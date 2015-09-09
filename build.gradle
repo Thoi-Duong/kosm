@@ -1,0 +1,48 @@
+import org.ajoberstar.grgit.*
+apply plugin: 'com.android.application'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.ajoberstar:gradle-git:0.8.0'
+        classpath 'com.android.tools.build:gradle:1.2.3'
+    }
+}
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "nl.igorski.kosm"
+        minSdkVersion 10
+        targetSdkVersion 17
+        versionCode 15
+        versionName "2.0.6"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            java.srcDirs    = [ 'src/main/java', 'libs/nineoldandroids/library/src' ]
+            jniLibs.srcDirs = [ 'libs' ]
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: [ '*.jar' ])
+}
+
+task externals {
+    File dir = new File('libs/nineoldandroids')
+    if (!dir.exists()) {
+        def grgit = Grgit.clone( dir: dir, uri: 'https://github.com/JakeWharton/NineOldAndroids.git' )
+    }
+}

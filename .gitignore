@@ -1,13 +1,15 @@
 Thumbs.db
-.DS_Store
+*.DS_Store
 intelliJ project/
-.iml
+*.iml
 .idea
+.gradle
 build/
-sources/obj/*
-sources/bin/*
-sources/gen/*
-sources/libs/armeabi/*
-sources/libs/armeabi-v7a/*
-sources/libs/x86/*
-sources/libs/mips/*
+obj/
+jni/jni/java_interface_wrap.cpp
+libs/armeabi/*
+libs/armeabi-v7a/*
+libs/x86/*
+libs/mips/*
+libs/nineoldandroids/*
+src/main/java/nl/igorski/lib/audio/nativeaudio/*
